@@ -25,13 +25,13 @@ python main.py
 # 二、工具添加
 ## 第一步：工具实现
 
-- 工具的实现应放在 `bioagent/tools` 目录下。
+- 工具的实现应放在 `bioagent/tools` 文件夹下。
 - 每一类工具可以单独创建一个 `.py` 文件，例如 `my_tool.py`。
 - 模仿别的工具格式，在该文件内编写工具的核心逻辑。
 
 ## 第二步：工具导入
 
-在 `bioagent/agents/tools` 目录下，将工具导入并注册到工具集合中。
+在 `bioagent/agents/tools.py` 文件中，将工具导入并注册到工具集合中。
 ```python
 all_tools += [
     KnowledgeGraphSearch(llm=llm),
