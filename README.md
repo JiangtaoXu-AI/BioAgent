@@ -1,6 +1,6 @@
 # 一、BioAgent - 快速入门
 ## 1. 克隆仓库
-'''python
+···python
 git clone https://github.com/JiangtaoXu-AI/BioAgent.git
 cd BioAgent
 
