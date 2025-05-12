@@ -1,10 +1,9 @@
 # 一、BioAgent - 快速入门
 ## 1. 克隆仓库
-'''
-python
+'''python
 git clone https://github.com/JiangtaoXu-AI/BioAgent.git
 cd BioAgent
-'''
+
 ## 2. 创建虚拟环境
 conda create -n bioagent3.10 python=3.10 -y
 conda activate bioagent3.10
