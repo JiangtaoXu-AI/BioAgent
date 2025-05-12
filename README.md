@@ -1,18 +1,55 @@
+# 一、BioAgent - 快速入门
+## 1. 克隆仓库
+git clone https://github.com/JiangtaoXu-AI/BioAgent.git
+cd BioAgent
 
-## 项目介绍
-这是一个由团队共同维护的项目，旨在提供各种工具和功能，以支持特定的任务和需求。项目的主要目标是确保所有工具都能满足功能要求，并在main中进行输入输出的测试。
+## 2. 创建虚拟环境
+conda create -n bioagent3.10 python=3.10 -y
+conda activate bioagent3.10
+pip install -r requirements.txt
 
-## 如何测试自己的tools是否满足功能
-1. **确保环境配置正确**：在运行测试之前，请确保你的开发环境已正确配置，并且所有依赖项都已安装。
-2. **编写测试用例**：为你的工具编写测试用例，确保覆盖所有功能点。测试用例应包括输入和预期的输出。
-3. **运行测试**：在main中运行测试，确保你的工具能够正确处理输入并返回预期的输出。
-4. **检查输出**：验证输出是否符合预期，如果有任何问题，请进行调试和修复。
-5. **提交代码**：在确保所有测试通过后，提交你的代码到版本控制系统，以便团队成员进行审查和合并。
 
-## 贡献指南
-- 请确保在提交代码之前进行充分的测试。
-- 遵循项目的代码风格和规范。
-- 如有任何问题或建议，请与团队成员进行沟通。
+## 3. 配置 API 密钥
+os.environ["OPENAI_API_KEY"] = "你的API密钥"
+os.environ["OPENAI_API_BASE"] = "https://api.deepseek.com/v1"
+model = "deepseek-chat"
 
-## 联系方式
-如有任何问题，请联系项目负责人或团队成员。
+## 4.运行
+python main.py
+
+# 二、工具添加
+## 第一步：工具实现
+
+- 工具的实现应放在 `bioagent/tools` 目录下。
+- 每一类工具可以单独创建一个 `.py` 文件，例如 `my_tool.py`。
+- 模仿别的工具格式，在该文件内编写工具的核心逻辑。
+
+## 第二步：工具导入
+
+在 `bioagent/agents/tools` 目录下，将工具导入并注册到工具集合中。
+all_tools += [
+    KnowledgeGraphSearch(llm=llm),
+    SMILESToBiosyntheticPathway(),
+    AddReactantsToBionavi(memory),
+    SMILESToPredictedSynthesisInfo(llm=llm,memory=memory),
+    GenomeCollectorTool(),
+    GenomeQueryTool()
+]
+
+# 三、工具测试
+
+## 方法一：在实现文件内测试
+
+- 可以直接在实现文件中添加 `__main__` 代码块进行简单测试。
+- 适合本地调试和单元测试使用。
+if __name__ == "__main__":
+    result = example_tool("apple")
+    print(result)  # 输出：Processed apple
+## 方法二：在 Agent 系统中测试
+- 启动 agent对话框（参考1快速开始python main.py）
+- 在对话框输入触发工具的用户需求
+- 测试结果
+
+
+
+
