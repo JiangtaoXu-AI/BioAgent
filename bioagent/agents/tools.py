@@ -18,7 +18,8 @@ def make_tools(llm: BaseLanguageModel, api_keys: dict = {}, local_rxn: bool=Fals
         AddReactantsToBionavi(memory),
         SMILESToPredictedSynthesisInfo(llm=llm,memory=memory),
         GenomeCollectorTool(),
-        GenomeQueryTool()
+        GenomeQueryTool(),
+        SelectRepresentativeSeq(),
     ]
 
     return all_tools
